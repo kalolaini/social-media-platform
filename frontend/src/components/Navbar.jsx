@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -7,16 +7,16 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
-      <Link to="/" className="text-2xl font-bold">Your apps name</Link>
+      <Link to="/" className="text-2xl font-bold">SocialMediaPlatform</Link>
       <div>
         {user ? (
           <>
-            <Link to="/tasks" className="mr-4">CRUD</Link>
+            <Link to="/posts" className="mr-4">Posts</Link> {/* ✅ ADDED "POSTS" LINK */}
             <Link to="/profile" className="mr-4">Profile</Link>
             <button
               onClick={handleLogout}

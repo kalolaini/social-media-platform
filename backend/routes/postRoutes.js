@@ -5,7 +5,7 @@ const { protect } = require("../middleware/authMiddleware");
 const router = express.Router();
 
 router.post("/", protect, createPost);
-router.get("/", protect, getPosts);
+router.get("/", getPosts);
 router.put("/:id", protect, updatePost);
 router.delete("/:id", protect, deletePost);
 

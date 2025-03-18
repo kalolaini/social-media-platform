@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Posts from './pages/Posts';
 import Tasks from './pages/Tasks';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/posts" element={<Posts />} />
         <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </Router>
