@@ -6,7 +6,12 @@ const LikeButton = ({ postId }) => {
   const { user } = useAuth();
   const [liked, setLiked] = useState(false);
 
-  const toggleLike = async () => {
+  const handleLikeToggle = async () => {
+    if (!user?.token) {
+      alert("You must be logged in to like posts.");
+      return;
+    }
+
     try {
       if (liked) {
         await axiosInstance.delete(`/likes/${postId}`, {
@@ -17,14 +22,17 @@ const LikeButton = ({ postId }) => {
           headers: { Authorization: `Bearer ${user.token}` },
         });
       }
-      setLiked(!liked);
+      setLiked(!liked); // ✅ Toggle the Like state
     } catch (error) {
-      alert("Error toggling like.");
+      console.error("❌ Error toggling like:", error.response?.data || error.message);
     }
   };
 
   return (
-    <button onClick={toggleLike} className={`mt-2 px-4 py-1 rounded ${liked ? "bg-red-500" : "bg-gray-300"}`}>
+    <button 
+      onClick={handleLikeToggle} 
+      className={`mt-2 px-3 py-1 rounded ${liked ? "bg-red-500" : "bg-gray-300"}`}
+    >
       {liked ? "Unlike" : "Like"}
     </button>
   );

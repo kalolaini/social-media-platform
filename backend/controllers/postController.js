@@ -24,18 +24,37 @@ exports.getPosts = async (req, res) => {
 
 // Update a post
 exports.updatePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post.userId.toString() !== req.user.id) return res.status(401).json({ message: "Unauthorized" });
-
-    post.content = req.body.content || post.content;
-    post.image = req.body.image || post.image;
-    await post.save();
-    res.json(post);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+    try {
+      const post = await Post.findById(req.params.id);
+  
+      // ✅ Check if the post exists
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+  
+      // ✅ Only allow the post owner to update
+      if (post.userId.toString() !== req.user.id) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+  
+      // ✅ Validate request body
+      if (!req.body.content?.trim()) {
+        return res.status(400).json({ message: "Content cannot be empty" });
+      }
+  
+      // ✅ Update post fields
+      post.content = req.body.content;
+      post.image = req.body.image || post.image;
+  
+      // ✅ Save updated post
+      const updatedPost = await post.save();
+  
+      // ✅ Return updated post
+      res.status(200).json(updatedPost);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
 
 // Delete a post
 exports.deletePost = async (req, res) => {
