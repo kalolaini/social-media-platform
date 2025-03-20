@@ -58,13 +58,23 @@ exports.updatePost = async (req, res) => {
 
 // Delete a post
 exports.deletePost = async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post.userId.toString() !== req.user.id) return res.status(401).json({ message: "Unauthorized" });
-
-    await post.deleteOne();
-    res.json({ message: "Post deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+    try {
+      const post = await Post.findById(req.params.id);
+  
+      // ✅ Check if the post exists before accessing userId
+      if (!post) {
+        return res.status(404).json({ message: "❌ Post not found" });
+      }
+  
+      // ✅ Check if the user requesting deletion is the owner
+      if (post.userId.toString() !== req.user.id) {
+        return res.status(401).json({ message: "❌ Unauthorized" });
+      }
+  
+      await post.deleteOne();
+      res.json({ message: "✅ Post deleted successfully" });
+    } catch (err) {
+      console.error("❌ Error deleting post:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };

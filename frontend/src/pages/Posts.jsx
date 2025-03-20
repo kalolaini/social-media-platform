@@ -59,10 +59,15 @@ const Posts = () => {
   // ✅ Delete Post Function
   const deletePost = async (id) => {
     try {
-      await axiosInstance.delete(`/api/posts/${id}`, {
+      await axiosInstance.delete(`/posts/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
+
       setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id)); // ✅ Remove post from UI
+
+      alert("Post deleted successfully!");
+
+
     } catch (error) {
       console.error("❌ Error deleting post:", error.response?.status, error.response?.data || error.message);
     }
@@ -72,7 +77,7 @@ const Posts = () => {
     <div className="max-w-2xl mx-auto mt-10">
       <h1 className="text-2xl font-bold mb-4">Posts</h1>
       {user && <PostForm createPost={createPost} />} {/* ✅ Ensure createPost is passed */}
-      <PostList posts={posts} updatePost={updatePost} deletePost={deletePost} />
+      <PostList posts={posts} setPosts={setPosts} updatePost={updatePost} deletePost={deletePost} />
     </div>
   );
 };
