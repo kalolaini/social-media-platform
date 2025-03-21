@@ -28,13 +28,18 @@ const PostList = ({ posts, setPosts, updatePost }) => {
 
       // ✅ Update UI immediately after updating post
       setPosts((prevPosts) =>
-        prevPosts.map((post) => (post._id === postId ? response.data : post))
+        prevPosts.map((post) =>
+          post._id === postId
+            ? { ...response.data, likes: post.likes } // ✅ Preserve likes
+            : post
+        )
       );
 
       setEditingPostId(null);
     } catch (error) {
       console.error("❌ Error updating post:", error.response?.data || error.message);
       alert("Error updating post. Please try again.");
+      setEditingPostId(null);
     }
   };
 
