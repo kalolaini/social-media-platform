@@ -18,13 +18,13 @@ const LikeButton = ({ postId, initialLiked }) => {
 
     try {
       if (liked) {
-        // ✅ Unlike Post
+        // Unlike Post
         await axiosInstance.delete(`/likes/${postId}`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         setLiked(false);
       } else {
-        // ✅ Like Post, but only if it's not already liked
+        // Like Post, but only if it's not already liked
         await axiosInstance.post(`/likes/${postId}`, {}, {
           headers: { Authorization: `Bearer ${user.token}` },
         });

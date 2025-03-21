@@ -10,14 +10,14 @@ const PostList = ({ posts, setPosts, updatePost }) => {
   const [editedContent, setEditedContent] = useState("");
   const [editedImage, setEditedImage] = useState("");
 
-  // ✅ Handle edit button click
+  // Handle edit button click
   const handleEditClick = (post) => {
     setEditingPostId(post._id);
     setEditedContent(post.content);
     setEditedImage(post.image || "");
   };
 
-  // ✅ Handle save after editing
+  // Handle save after editing
   const handleSaveClick = async (postId) => {
     try {
       const response = await axiosInstance.put(
@@ -26,11 +26,11 @@ const PostList = ({ posts, setPosts, updatePost }) => {
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
 
-      // ✅ Update UI immediately after updating post
+      // Update UI immediately after updating post
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post._id === postId
-            ? { ...response.data, likes: post.likes } // ✅ Preserve likes
+            ? { ...response.data, likes: post.likes } 
             : post
         )
       );
@@ -43,7 +43,7 @@ const PostList = ({ posts, setPosts, updatePost }) => {
     }
   };
 
-  // ✅ Handle delete post
+  // Handle delete post
   const handleDeleteClick = async (postId) => {
     if (!window.confirm("Are you sure you want to delete this post?")) {
       return;
@@ -56,7 +56,7 @@ const PostList = ({ posts, setPosts, updatePost }) => {
 
       console.log("✅ Response from delete:", response.data);
 
-      // ✅ Remove deleted post from UI
+      // Remove deleted post from UI
       setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
 
       alert("Post deleted successfully!");
@@ -71,7 +71,7 @@ const PostList = ({ posts, setPosts, updatePost }) => {
       {posts.map((post) => (
         <div key={post._id} className="bg-gray-100 p-4 mb-4 rounded shadow">
           {editingPostId === post._id ? (
-            // ✅ Edit Mode
+            // Edit Mode
             <div>
               <textarea
                 value={editedContent}
@@ -99,7 +99,7 @@ const PostList = ({ posts, setPosts, updatePost }) => {
               </button>
             </div>
           ) : (
-            // ✅ View Mode
+            // View Mode
             <div>
               <p>{post.content}</p>
               {post.image && <img src={post.image} alt="Post" className="mt-2 max-w-full h-auto rounded" />}

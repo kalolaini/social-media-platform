@@ -9,7 +9,7 @@ exports.addComment = async (req, res) => {
 
         console.log("➡️ Request to Add Comment");
         console.log("📌 Post ID:", postId);
-        console.log("👤 Request User:", req.user); // ✅ Log the user object
+        console.log("👤 Request User:", req.user);
 
         // If req.user is missing, return an error
         if (!req.user) {
@@ -42,7 +42,7 @@ exports.addComment = async (req, res) => {
 // Get all comments for a post
 exports.getComments = async (req, res) => {
   try {
-    const { postId } = req.params; // ✅ Extract postId from URL params
+    const { postId } = req.params; 
 
     console.log("🔍 Fetching comments for post ID:", postId);
 

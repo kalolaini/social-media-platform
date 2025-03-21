@@ -8,11 +8,11 @@ const Posts = () => {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);
 
-  // ✅ Fetch Posts from Backend
+  // Fetch Posts from Backend
   useEffect(() => {
     if (user?.token) {
       axiosInstance
-        .get("/posts", { //This is where I previously had the wrong API
+        .get("/posts", { //This is where I previously had the wrong API endpoint
           headers: { Authorization: `Bearer ${user.token}` },
         })
         .then((response) => {
@@ -25,23 +25,23 @@ const Posts = () => {
     }
   }, [user]);
 
-  // ✅ Create Post Function
+  // Create Post Function
   const createPost = async (content, image) => {
     try {
       const response = await axiosInstance.post(
-        "/posts", //API endpoint
+        "/posts", 
         { content, image },
         {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
-      setPosts([response.data, ...posts]); // Add new post to UI
+      setPosts([response.data, ...posts]); 
         } catch (error) {
         console.error("❌ Error creating post:", error.response?.status, error.response?.data || error.message);
         }
   };
 
-  // ✅ Update Post Function
+  // Update Post Function
   const updatePost = async (id, updatedContent, updatedImage) => {
     try {
       const response = await axiosInstance.put(
@@ -50,20 +50,20 @@ const Posts = () => {
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
   
-      setPosts(posts.map((post) => (post._id === id ? response.data : post))); // ✅ Update UI
+      setPosts(posts.map((post) => (post._id === id ? response.data : post))); 
     } catch (error) {
       console.error("❌ Error updating post:", error.response?.status, error.response?.data || error.message);
     }
   };
 
-  // ✅ Delete Post Function
+  // Delete Post Function
   const deletePost = async (id) => {
     try {
       await axiosInstance.delete(`/posts/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
 
-      setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id)); // ✅ Remove post from UI
+      setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id)); 
 
       alert("Post deleted successfully!");
 

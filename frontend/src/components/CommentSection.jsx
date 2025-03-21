@@ -7,7 +7,7 @@ const CommentSection = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
 
-  // ✅ Fetch comments when postId changes
+  // Fetch comments when postId changes
   useEffect(() => {
     if (!postId || !user?.token) return;
 
@@ -23,7 +23,7 @@ const CommentSection = ({ postId }) => {
       });
   }, [postId, user]);
 
-  // ✅ Handle submitting a comment
+  // Handle submitting a comment
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!commentText.trim()) return;
@@ -40,7 +40,7 @@ const CommentSection = ({ postId }) => {
 
     try {
         const response = await axiosInstance.post(
-            `/comments/${postId}`, // ✅ Ensure correct API endpoint
+            `/comments/${postId}`, 
             { content: commentText },
             { headers: { Authorization: `Bearer ${user.token}` } }
         );

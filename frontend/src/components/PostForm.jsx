@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
-const PostForm = ({ createPost }) => {  // ✅ Accept createPost as a prop
+const PostForm = ({ createPost }) => {  
   const { user } = useAuth();
   const [formData, setFormData] = useState({ content: "", image: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.content.trim()) return; // ✅ Prevent empty posts
+    if (!formData.content.trim()) return;
 
     try {
-      await createPost(formData.content, formData.image); // ✅ Call createPost function
-      setFormData({ content: "", image: "" }); // ✅ Clear form after posting
+      await createPost(formData.content, formData.image); 
+      setFormData({ content: "", image: "" }); 
     } catch (error) {
       console.error("❌ Post creation failed:", error.response?.data || error.message);
     }

@@ -9,17 +9,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Middleware to log incoming requests
+// Middleware to log incoming requests
 app.use((req, res, next) => {
     console.log(`➡️ ${req.method} ${req.path}`);
     next();
 });
 
-// ✅ Define API routes
+// Define API routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));  
 app.use("/api/likes", require("./routes/likeRoutes"));
+app.use("/api/tasks", require("./routes/taskRoutes"));
 
 if (require.main === module) {
     connectDB();
