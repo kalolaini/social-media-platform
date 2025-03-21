@@ -16,12 +16,12 @@ exports.likePost = async (req, res) => {
     // Check if user has already liked the post
     let existingLike = await Like.findOne({ userId, postId });
     if (!existingLike) {
-        // ✅ If like does not exist, create a new like
+        // If like does not exist, create a new like
         existingLike = new Like({ userId, postId });
         await existingLike.save();
       }
 
-    // Create a new like
+    //Create a new like
     //await new Like({ userId, postId }).save();
 
     // Fetch updated like count
