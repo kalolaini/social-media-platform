@@ -13,7 +13,7 @@ const Login = () => {
     try {
       const response = await axiosInstance.post('/auth/login', formData);
       login(response.data);
-      navigate('/Profile');
+      navigate('/Tasks');
     } catch (error) {
       alert('Login failed. Please try again.');
     }
