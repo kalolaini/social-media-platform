@@ -2,7 +2,7 @@ import { useState } from "react";
 //import { useAuth } from "../context/AuthContext";
 
 const PostForm = ({ createPost }) => {  
-  const { user } = useAuth();
+ // const { user } = useAuth();
   const [formData, setFormData] = useState({ content: "", image: "" });
 
   const handleSubmit = async (e) => {
