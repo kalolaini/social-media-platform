@@ -82,7 +82,9 @@ Ensure the following secrets are configured in your GitHub repository:
 
 # Running the Application
 
-**Once deploye, access the application via**
+1. **Once deploye, access the application via**
    ```bash
    http://3.26.39.90:22
 
+##Conclusion
+The project demonstrates a full-stack application setup with automated CI/CD pipelines facilitating continuous integration and deployment practices.
