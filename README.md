@@ -14,7 +14,7 @@ This project implements a basic social media platform with functionalities like 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/social-media-platform.git
+   git clone https://github.com/your-username/social-media-platform.git](https://github.com/kalolaini/social-media-platform)
    cd social-media-platform
 
    
@@ -25,8 +25,8 @@ This project implements a basic social media platform with functionalities like 
 
 3. **Set up environment variables Create a .env file in the backend directory and fill it with the necessary environment variables:**
    ```bash
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
+   MONGO_URI=mongodb+srv://Kalo:Kalo2018!@socialmediaplatform.ghluj.mongodb.net/socialmediaplatform?retryWrites=true&w=majority&appName=SocialMediaPlatform
+   JWT_SECRET=2J8zqkP7VN6bxzg+Wy7DQZsd3Yx8mF3Bl0kch6HYtFs=
    PORT=5001
    
 4. **Run the backend server**
@@ -79,3 +79,10 @@ Ensure the following secrets are configured in your GitHub repository:
 - PORT: Port number on which the application runs.
 
 - SSH_KEY: Private SSH key to access the EC2 instance.
+
+# Running the Application
+
+**Once deploye, access the application via**
+   ```bash
+   http://3.26.39.90:22
+
