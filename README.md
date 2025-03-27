@@ -16,11 +16,13 @@ This project implements a basic social media platform with functionalities like 
    ```bash
    git clone https://github.com/your-username/social-media-platform.git
    cd social-media-platform
-2. Install dependencies for the backend
+   
+2. **Install dependencies for the backend**
+  ```bash
 cd backend
 npm install
 
-3. Set up environment variables Create a .env file in the backend directory and fill it with the necessary environment variables:
+3. **Set up environment variables Create a .env file in the backend directory and fill it with the necessary environment variables:
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 PORT=5001
