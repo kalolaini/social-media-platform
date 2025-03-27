@@ -86,5 +86,5 @@ Ensure the following secrets are configured in your GitHub repository:
    ```bash
    http://3.26.39.90:22
 
-##Conclusion
+#Conclusion
 The project demonstrates a full-stack application setup with automated CI/CD pipelines facilitating continuous integration and deployment practices.
