@@ -14,7 +14,7 @@ This project implements a basic social media platform with functionalities like 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/social-media-platform.git](https://github.com/kalolaini/social-media-platform)
+   git clone https://github.com/kalolaini/social-media-platform
    cd social-media-platform
 
    
